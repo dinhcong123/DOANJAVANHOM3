@@ -24,9 +24,12 @@ CREATE TABLE IF NOT EXISTS `lưu phim` (
   KEY `FKo2mhdfunalo1n9ccn2ukvpc9h` (`user_id`),
   CONSTRAINT `FK2o1uky4ga25acaatdv69bhsk0` FOREIGN KEY (`phim_id`) REFERENCES `phim` (`phim_id`),
   CONSTRAINT `FKo2mhdfunalo1n9ccn2ukvpc9h` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table webxemphim.lưu phim: ~0 rows (approximately)
+-- Dumping data for table webxemphim.lưu phim: ~2 rows (approximately)
+INSERT INTO `lưu phim` (`luuphim_id`, `phim_id`, `user_id`) VALUES
+	(4, 15, 3),
+	(5, 14, 3);
 
 -- Dumping structure for table webxemphim.phim
 CREATE TABLE IF NOT EXISTS `phim` (
@@ -44,9 +47,9 @@ CREATE TABLE IF NOT EXISTS `phim` (
   KEY `FKfop4waw1l91830hd8cee7dvtm` (`theloai_id`),
   CONSTRAINT `FKfop4waw1l91830hd8cee7dvtm` FOREIGN KEY (`theloai_id`) REFERENCES `thể loại` (`theloai_id`),
   CONSTRAINT `FKtovi2w5iwnd7w4bvljg4s5d3x` FOREIGN KEY (`quocgia_id`) REFERENCES `quốc gia` (`quocgia_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table webxemphim.phim: ~0 rows (approximately)
+-- Dumping data for table webxemphim.phim: ~20 rows (approximately)
 INSERT INTO `phim` (`phim_id`, `description`, `imageurl`, `sotapphim`, `sotapphimhientai`, `tenphim`, `year`, `quocgia_id`, `theloai_id`) VALUES
 	(1, 'Sau khi Đoàn nhạc Gió trường trung học các tiền bối của nhóm nghỉ hưu và một ban lãnh đạo mới sẽ nắm quyền; Kumiko, sắp trở thành học sinh cuối cấp', 'hibike-euphonium-3-thumbnail_90a01fed-3ec8-4e6a-b46d-1f9ff1206b23.webp', 13, 12, 'Hibike! Euphonium 3', '2024-04-10', 1, 2),
 	(2, 'Sentai Daishikkaku lấy bối cảnh trong một thế giới tồn tại một nhóm siêu nhân được gọi là Chiến Đội Thánh Long. ', 'sentai-daishikkaku-thumbnail_47335f1e-35ff-4a6a-97f5-ec5a8b539f09.webp', 12, 12, 'Sentai Daishikkaku', '2024-05-01', 1, 6),
@@ -55,7 +58,7 @@ INSERT INTO `phim` (`phim_id`, `description`, `imageurl`, `sotapphim`, `sotapphi
 	(5, 'Sousuke Kaburaya, một thám tử nghèo khó, gặp Sara, một công chúa đến từ thế giới khác với sức mạnh ma thuật.', 'henjin-no-salad-bowl-thumbnail_22cc7884-5d44-46d3-8f0e-99a43067d079.webp', 12, 12, 'Henjin no Salad Bowl', '2024-05-01', 1, 2),
 	(6, 'Mùa thứ 2 của Series anime Mushoku Tensei Thất nghiệp chuyển sinh', 'mushoku-tensei-ii-isekai-ittara-honki-dasu-ss2-thumbnail_69d472eb-7dd3-49af-a0d5-556f30ab2723.webp', 24, 26, 'Mushoku Tensei II: Isekai Ittara Honki Dasu', '2024-06-05', 1, 2),
 	(7, '"Cổng Mới" là trò chơi sinh tử trực tuyến với hàng chục nghìn người chơi. Nhờ Shin, người chơi kỳ cựu có tay nghề cao nhất, những người chơi khác cuối cùng sẽ bị loại khỏi trò chơi', 'the-new-gate-thumbnail_eddc1871-63cd-4ae2-8dfb-960ec81546eb.webp', 12, 12, 'The New Gate', '2024-05-08', 1, 1),
-	(8, 'Mùa thứ hai của Maou Gakuin no Futekigousha: Shijou Saikyou no Maou no Shiso, Tensei shite Shison-tachi no Gakkou e Kayou .', 'tensei-shite-shison-tachi-no-gakkou-e-kayou-ii-thumbnail_79e29d63-6934-470c-8630-ffbc72d5b0f8.webp', 21, 21, 'Maou Gakuin no Futekigousha: Shijou Saikyou no Maou no Shiso, Tensei shite Shison-tachi no Gakkou e Kayou II', '2024-07-19', 1, 4),
+	(8, 'Mùa thứ hai của Maou Gakuin no Futekigousha: Shijou Saikyou no Maou no Shiso, Tensei shite Shison-tachi no Gakkou e Kayou .', 'tensei-shite-shison-tachi-no-gakkou-e-kayou-ii-thumbnail_79e29d63-6934-470c-8630-ffbc72d5b0f8.webp', 21, 21, 'Maou Gakuin no Futekigousha: Shijou Saikyou no Maou no Shiso, Tensei shite Shison-tachi no Gakkou e Kayou II', '2024-07-02', 1, 4),
 	(9, 'Mở đầu câu truyện, cậu học sinh trung học 17 tuổi Shinichi Kudo bị biến thành cậu bé Conan Edogawa.', 'detective-conan-thumbnail_8372840e-e12c-4468-9e54-0ef48a2fb3e1.webp', 1129, 1129, 'Thám Tử Lừng Danh Conan', '1996-06-04', 1, 1),
 	(10, 'Tonbo Ooi, nhân vật chính, mất cả cha lẫn mẹ trong một vụ tai nạn ô tô khi cô còn nhỏ và được ông nội cô, Gonji Ooi, một ngư dân trên đảo Kagoshima thuộc quần đảo Tokara, nuôi dưỡng.', 'ooi-tonbo-thumbnail_1c848171-2e72-4f48-a694-a13a5b60ba38.webp', 13, 13, 'Ooi! Tonbo', '2024-05-08', 1, 2),
 	(11, 'Cuối cùng, ngày Mai tốt nghiệp cấp ba cũng đã đến. Trong khi Sakuta háo hức chờ đợi bạn gái, thì một em học sinh tiểu học trông y hệt cô xuất hiện trước mặt cậu. Nghi ngờ và vì những lý do không hề hay ho gì...', 'seishun-buta-yarou-wa-randoseru-girl-no-yume-wo-minai-thumbnail_48768e54-2bdb-4f55-8324-9a4b3326bb3e.webp', 1, 1, 'Seishun Buta Yarou wa Randoseru Girl no Yume wo Minai', '2024-02-07', 1, 2),
@@ -67,7 +70,10 @@ INSERT INTO `phim` (`phim_id`, `description`, `imageurl`, `sotapphim`, `sotapphi
 	(17, 'Kingdom Season 5', 'kingdom-5th-season-thumbnail_490cf9c4-d3a9-4209-9820-557d2ef656b9.webp', 13, 13, 'Kingdom 5th Season', '2019-04-17', 1, 1),
 	(18, 'Khi những ký sinh thú vô danh tàn bạo chiếm con người làm vật chủ và giành được quyền chi phối, nhân loại phải vùng lên chiến đấu với mối đe dọa leo thang này.', 'ky-sinh-thu-vung-xam-thumbnail_d69d83a4-38f2-4efb-b856-c00725ca1358.webp', 6, 6, 'Parasyte: The Grey', NULL, 2, 3),
 	(19, 'Trong tương lai xa, chiến tranh đã hủy diệt toàn bộ Trái đất, chỉ để lại một vùng đất hoang cằn cỗi, nơi nguồn cung cấp nước được kiểm soát bởi tên vua tham lam. Để tìm kiếm một hồ nước đã mất tích từ lâu,', 'sand-land-the-series-thumbnail_7e74b653-7a91-4a66-b775-a82e7b86ff6f.webp', 13, 13, 'Sand Land: The Series', NULL, 1, 4),
-	(20, 'âu chuyện kể về Arima Kosei, một thần đồng piano. Nhưng kể từ sau chấn động tâm lí do cái sự qua đời của mẹ cậu, Kosei đã không thể nghe thấy bất kì âm thanh nào.', 'shigatsu-wa-kimi-no-uso-thumbnail_f605efdd-bf93-423a-8000-162f9529671f.webp', 22, 22, 'Shigatsu wa Kimi no Uso', NULL, 1, 2);
+	(20, 'âu chuyện kể về Arima Kosei, một thần đồng piano. Nhưng kể từ sau chấn động tâm lí do cái sự qua đời của mẹ cậu, Kosei đã không thể nghe thấy bất kì âm thanh nào.', 'shigatsu-wa-kimi-no-uso-thumbnail_f605efdd-bf93-423a-8000-162f9529671f.webp', 22, 22, 'Shigatsu wa Kimi no Uso', NULL, 1, 2),
+	(21, 'Có những từ mà Violet nghe được trên chiến trường, điều mà cô không thể quên. Những lời này đã được trao cho cô ấy bởi một người cô ấy yêu mến, hơn bất cứ ai khác. Cô ấy chưa biết ý nghĩa của họ. ', 'anhviolet_99e32eef-7fd5-4a2e-87ca-1e8ef55caf4a.png', 12, 1, 'Violet Envergadent', '2024-07-03', 1, 2),
+	(22, 'Năm 2022, thế hệ game chạy trên NERvGear tiếp theo đã được công bố, người dùng có thể kết nối với thế giới ảo thông qua chức năng FullDive. ', 'Swordartonline_498c8d6c-65dd-4d6d-9365-4d348a3e90c5.png', 12, 1, 'Sword Art Online', '2024-07-03', 1, 1),
+	(23, 'Phép thuật, đó không còn là truyền thuyết hay một câu chuyện cổ tích nữa. Nó đã trở thành một công nghệ thực tiễn từ gần một thế kỷ nay. ', 'anh2_7dd028c1-2366-432a-a405-d783cad48909.png', 12, 1, 'Mahouka Koukou no Rettousei', '2024-07-03', 1, 1);
 
 -- Dumping structure for table webxemphim.quốc gia
 CREATE TABLE IF NOT EXISTS `quốc gia` (
@@ -77,7 +83,7 @@ CREATE TABLE IF NOT EXISTS `quốc gia` (
   PRIMARY KEY (`quocgia_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table webxemphim.quốc gia: ~2 rows (approximately)
+-- Dumping data for table webxemphim.quốc gia: ~4 rows (approximately)
 INSERT INTO `quốc gia` (`quocgia_id`, `description`, `tenquocgia`) VALUES
 	(1, 'japan', 'Nhật'),
 	(2, 'US', 'Mỹ'),
@@ -90,9 +96,9 @@ CREATE TABLE IF NOT EXISTS `role` (
   `description` varchar(250) DEFAULT NULL,
   `name` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table webxemphim.role: ~0 rows (approximately)
+-- Dumping data for table webxemphim.role: ~2 rows (approximately)
 INSERT INTO `role` (`id`, `description`, `name`) VALUES
 	(1, NULL, 'ADMIN'),
 	(2, NULL, 'USER');
@@ -105,7 +111,7 @@ CREATE TABLE IF NOT EXISTS `thể loại` (
   PRIMARY KEY (`theloai_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table webxemphim.thể loại: ~2 rows (approximately)
+-- Dumping data for table webxemphim.thể loại: ~6 rows (approximately)
 INSERT INTO `thể loại` (`theloai_id`, `description`, `tentheloai`) VALUES
 	(1, 'hanh dong', 'Action'),
 	(2, 'tinh cam', 'Romance'),
@@ -123,9 +129,9 @@ CREATE TABLE IF NOT EXISTS `tập phim` (
   PRIMARY KEY (`tapphim_id`),
   KEY `FKpvtjg492oqbp4dlmpmjqwxm71` (`phim_id`),
   CONSTRAINT `FKpvtjg492oqbp4dlmpmjqwxm71` FOREIGN KEY (`phim_id`) REFERENCES `phim` (`phim_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table webxemphim.tập phim: ~0 rows (approximately)
+-- Dumping data for table webxemphim.tập phim: ~16 rows (approximately)
 INSERT INTO `tập phim` (`tapphim_id`, `tapphimthu`, `tapphimupdate`, `phim_id`) VALUES
 	(1, 1, 'blue archive_163796e3-9c05-4f03-8022-d71e2fbd591e.mp4', 14),
 	(2, 1, 'Your lie in April Trailer_1ac652e9-c09e-414e-b582-f7413f98e3cf.mp4', 20),
@@ -142,7 +148,11 @@ INSERT INTO `tập phim` (`tapphim_id`, `tapphimthu`, `tapphimupdate`, `phim_id`
 	(13, 1, 'Maou Gakuin no Futekigousha Season 2 Official Trailer (The Misfit of Demon King Academy S2)_50123dcf-f6c5-4318-a23e-af2299e1014f.mp4', 8),
 	(14, 1, 'the new gate_bb66b5eb-46e8-4e04-8717-44d05332bd9b.mp4', 7),
 	(15, 1, 'Mushoku Tensei- Jobless Reincarnation Season 2 Part 2 - Labyrinth Arc Trailer_e053642b-8b0e-438e-8d14-0975e7ebd0e6.mp4', 6),
-	(16, 1, 'henjin no salad_67bc11e4-7244-4289-9452-c70db7ec9530.mp4', 5);
+	(16, 1, 'henjin no salad_67bc11e4-7244-4289-9452-c70db7ec9530.mp4', 5),
+	(17, 1, 'VIOLETEVERGARDEN_7833e9c2-1dec-4253-a53d-76ba1baf27f9.mp4', 21),
+	(18, 1, 'Sword Art Online - Official Trailer_492bf1e0-1eed-4426-8a7d-3d61590ec20a.mp4', 22),
+	(19, 1, 'Re_Monster - Official Trailer _ English Sub_0e0862c0-ca4a-4037-a4cc-1cc451680975.mp4', 23),
+	(20, 2, 'Sword Art Online Alicization War of Underworld Final Season Trailer_84010649-9744-414b-8945-e113e9cea522.mp4', 22);
 
 -- Dumping structure for table webxemphim.user
 CREATE TABLE IF NOT EXISTS `user` (
@@ -153,12 +163,11 @@ CREATE TABLE IF NOT EXISTS `user` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `UKob8kqyqqgmefl0aco34akdtpe` (`email`),
   UNIQUE KEY `UKsb8bbouer5wak8vyiiy4pf2bx` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table webxemphim.user: ~0 rows (approximately)
+-- Dumping data for table webxemphim.user: ~1 rows (approximately)
 INSERT INTO `user` (`id`, `email`, `password`, `username`) VALUES
-	(1, 'huy@gmail.com', '$2a$10$MmI3SyYxfeNSXoDVK0Z.L.f0MI9px1yQgH6uTm4LVvgpguqV3.8u.', 'rechi'),
-	(2, 'huyle27@gmail.com', '$2a$10$Sr4A.Y1iL0jgX70eFUzEbuWVYGZ.qxbr8237d3Z0fJ9yZTGrx8pXu', 'huy');
+	(3, 'trandinhcong895@gmail.com', '$2a$10$jHRF/eS0p3a7zURwd.AirelXJ76nw/simCs5uUCrwseQXDQLo46se', 'admin');
 
 -- Dumping structure for table webxemphim.user_role
 CREATE TABLE IF NOT EXISTS `user_role` (
@@ -170,10 +179,9 @@ CREATE TABLE IF NOT EXISTS `user_role` (
   CONSTRAINT `FKa68196081fvovjhkek5m97n3y` FOREIGN KEY (`role_id`) REFERENCES `role` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table webxemphim.user_role: ~0 rows (approximately)
+-- Dumping data for table webxemphim.user_role: ~1 rows (approximately)
 INSERT INTO `user_role` (`user_id`, `role_id`) VALUES
-	(1, 1),
-	(2, 2);
+	(3, 1);
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
