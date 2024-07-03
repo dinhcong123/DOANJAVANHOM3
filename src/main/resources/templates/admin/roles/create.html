@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{admin/_adminlayout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Thêm Vai Trò</title>
+</head>
+<body layout:fragment="content">
+<div class="card mb-4">
+    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+        <h6 class="m-0 font-weight-bold text-primary">Thêm Vai Trò</h6>
+    </div>
+    <div class="form-row">
+        <div class="card-body">
+            <form th:action="@{/admin/roles/add}" th:object="${role}" method="post">
+                <div class="form-group col-sm-3">
+                    <label class="control-label" th:for="name">Tên Vai Trò</label>
+                    <input type="text" th:field="*{name}" class="form-control" />
+                    <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="text-danger"></span>
+                </div>
+                <div class="form-group col-sm-3">
+                    <label class="control-label" th:for="description">Mô Tả</label>
+                    <input type="text" th:field="*{description}" class="form-control" />
+                    <span th:if="${#fields.hasErrors('description')}" th:errors="*{description}" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">Thêm</button>
+                </div>
+            </form>
+            <a th:href="@{/admin/roles}">Quay lại</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

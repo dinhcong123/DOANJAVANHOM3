@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{admin/_adminlayout}">
+<head>
+    <title>Cập Nhật</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+</head>
+<body layout:fragment="content">
+<div class="card mb-4">
+    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+        <h6 class="m-0 font-weight-bold text-primary">Chỉnh Sửa Phim</h6>
+    </div>
+    <div class="form-row">
+        <div class="card-body">
+            <form th:action="@{/admin/phims/edit/{id}(id=${phims.phimId})}" th:object="${phims}" method="post"
+                  enctype="multipart/form-data">
+                <div th:if="${#fields.hasErrors('*')}" class="text-danger">
+                    <p th:each="err : ${#fields.errors('*')}" th:text="${err}"></p>
+                </div>
+                <input type="hidden" th:field="*{phimId}" />
+                <input type="hidden" th:field="*{imageurl}" />
+                <input type="hidden" th:field="*{year}" />
+
+                <div class="form-group col-sm-3">
+                    <label th:for="*{tenphim}" class="control-label">Tên phim</label>
+                    <input th:field="*{tenphim}" class="form-control" />
+                    <span th:if="${#fields.hasErrors('tenphim')}" th:errors="*{tenphim}" class="text-danger"></span>
+                </div>
+
+                <div class="form-group col-sm-3">
+                    <label th:for="*{description}" class="control-label">Mô tả</label>
+                    <input th:field="*{description}" class="form-control" />
+                    <span th:if="${#fields.hasErrors('description')}" th:errors="*{description}" class="text-danger"></span>
+                </div>
+
+                <div class="form-group col-sm-3">
+                    <label for="imageurl">Image:</label>
+                    <input class="form-control-file" type="file" id="imageurl" name="imagePhim">
+                    <div class="alert alert-warning" th:if="${#fields.hasErrors('imageurl')}" th:errors="*{imageurl}"></div>
+                </div>
+
+                <div class="form-group col-sm-3">
+                    <label for="year" class="control-label">Ngày Tháng Năm Phát Hành</label>
+                    <input type="date" id="year" name="year" class="form-control" th:field="*{year}" />
+                    <span class="text-danger" th:if="${#fields.hasErrors('year')}" th:errors="*{year}">Error</span>
+                </div>
+
+                <div class="form-group col-sm-3">
+                    <label th:for="*{sotapphimhientai}" class="control-label">Số tập hiện tại</label>
+                    <input th:field="*{sotapphimhientai}" class="form-control" />
+                    <span th:if="${#fields.hasErrors('sotapphimhientai')}" th:errors="*{sotapphimhientai}" class="text-danger"></span>
+                </div>
+
+                <div class="form-group col-sm-3">
+                    <label th:for="*{sotapphim}" class="control-label">Số tập phim</label>
+                    <input th:field="*{sotapphim}" class="form-control" />
+                    <span th:if="${#fields.hasErrors('sotapphim')}" th:errors="*{sotapphim}" class="text-danger"></span>
+                </div>
+
+                <div class="form-label col-sm-3">
+                    <label for="theloai">Thể Loại:</label>
+                    <select th:field="*{theloai}" class="form-control" id="theloai">
+                        <option th:each="theloai : ${theloais}"
+                                th:value="${theloai.theloaiId}" th:text="${theloai.tentheloai}"></option>
+                    </select>
+                </div>
+                <div class="form-label col-sm-3">
+                    <label for="quocgia">Quốc Gia:</label>
+                    <select th:field="*{quocgia}" class="form-control" id="quocgia">
+                        <option th:each="quocgia : ${quocgias}"
+                                th:value="${quocgia.quocgiaId}" th:text="${quocgia.tenquocgia}"></option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <input type="submit" value="Lưu" class="btn btn-primary" />
+                </div>
+            </form>
+            <a th:href="@{/admin/phims}">Quay lại</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security5"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Anime Template">
+    <meta name="keywords" content="Anime, unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Trang Web Anime</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" th:href="@{/user/css/bootstrap.min.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/user/css/font-awesome.min.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/user/css/elegant-icons.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/user/css/plyr.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/user/css/nice-select.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/user/css/owl.carousel.min.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/user/css/slicknav.min.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/user/css/style.css}" type="text/css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+</head>
+
+<body>
+<!-- Page Preloader -->
+<div id="preloder">
+    <div class="loader"></div>
+</div>
+<!-- Header Section Begin -->
+<header class="header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-2">
+                <div class="header__logo">
+                    <a th:href="@{/}">
+                        <img th:src="@{/user/img/logo.png}" alt="">
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-8">
+                <div class="header__nav">
+                    <nav class="header__menu mobile-menu">
+                        <ul>
+                            <li class="active"><a th:href="@{/}">Xem Phim</a></li>
+                            <li><a href="#">Thể Loại</a>
+                                <ul class="dropdown">
+                                    <li th:each="theloai : ${theloais}">
+                                        <a th:href="@{/phimtheotheloai/{id}(id=${theloai.theloaiId})}">
+                                            <span th:text="${theloai.tentheloai}"></span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li><a href="#">Quốc Gia</a>
+                                <ul class="dropdown">
+                                    <li th:each="quocgia : ${quocgias}">
+                                        <a th:href="@{/phimtheoquocgia/{id}(id=${quocgia.quocgiaId})}">
+                                            <span th:text="${quocgia.tenquocgia}"></span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li><a th:href="@{/danhsachphim}">Phim Đã Lưu</a></li>
+                            <li><a th:href="@{/random}" role="menuitem">Random</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <div class="col-lg-2">
+                <div class="header__right">
+                    <a th:if="${#authentication.principal != 'anonymousUser' && #authorization.expression('hasAnyAuthority(''ADMIN'')')}">
+                        <a href="#" class="search-switch"><span class="icon_search"></span></a>
+                        <a th:href="@{/admin/phims}" target="_blank" class="active" th:text="${#authentication.name}"></a>
+                        <form th:action="@{/logout}" method="post">
+                            <button type="submit"><span class="bi bi-box-arrow-right"></span></button>
+                        </form>
+                    </a>
+                    <a th:if="${#authentication.principal != 'anonymousUser' && !#authorization.expression('hasAnyAuthority(''ADMIN'')')}">
+                        <a href="#" class="search-switch"><span class="icon_search"></span></a>
+                        <a th:href="@{/}" class="active" th:text="${#authentication.name}"></a>
+                        <form th:action="@{/logout}" method="post">
+                            <button type="submit"> <span class="bi bi-box-arrow-right"></span></button>
+                        </form>
+                    </a>
+                    <a th:if="${#authentication.principal == 'anonymousUser'}">
+                        <a href="#" class="search-switch"><span class="icon_search"></span></a>
+                        <a th:href="@{/login}"><span class="icon_profile"></span></a>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div id="mobile-menu-wrap"></div>
+    </div>
+</header>
+<!-- Header End -->
+<div layout:fragment="content"></div>
+<!-- Footer Section Begin -->
+<footer class="footer">
+    <div class="page-up">
+        <a href="#" id="scrollToTopButton"><span class="arrow_carrot-up"></span></a>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="footer__logo">
+                    <a th:href="@{/}"><img th:src="@{/user/img/logo.png}" alt=""></a>
+                </div>
+            </div>
+            <p>Nếu có vấn Đề về trải nghiệm hãy liên hệ ngay với Admin qua
+                <a href="https://www.facebook.com/ngu.lochoi/" target="_blank">Facebook</a>
+            </p>
+        </div>
+    </div>
+</footer>
+<!-- Footer Section End -->
+<!-- Search model Begin -->
+<div class="search-model">
+    <div class="h-100 d-flex align-items-center justify-content-center">
+        <div class="search-close-switch"><i class="icon_close"></i></div>
+        <form class="search-model-form">
+            <input type="text" id="search-input" placeholder="Search here.....">
+        </form>
+    </div>
+</div>
+<!-- Search model end -->
+<!-- Js Plugins -->
+<script th:src="@{/user/js/jquery-3.3.1.min.js}"></script>
+<script th:src="@{/user/js/bootstrap.min.js}"></script>
+<script th:src="@{/user/js/player.js}"></script>
+<script th:src="@{/user/js/jquery.nice-select.min.js}"></script>
+<script th:src="@{/user/js/mixitup.min.js}"></script>
+<script th:src="@{/user/js/jquery.slicknav.js}"></script>
+<script th:src="@{/user/js/owl.carousel.min.js}"></script>
+<script th:src="@{/user/js/main.js}"></script>
+
+
+
+<script>
+    document.querySelector('.search-switch').addEventListener('click', function() {
+        document.querySelector('.search-model').classList.add('open');
+    });
+
+    document.querySelector('.search-close-switch').addEventListener('click', function() {
+        document.querySelector('.search-model').classList.remove('open');
+    });
+
+    document.querySelector('.search-model-form').addEventListener('submit', function(event) {
+        event.preventDefault();
+        var keyword = document.getElementById('search-input').value;
+        window.location.href = '/search?keyword=' + keyword + '&page=1';
+    });
+    document.querySelector('.search-model-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+    var keyword = encodeURIComponent(document.getElementById('search-input').value);
+    window.location.href = '/search?keyword=' + keyword + '&page=1';
+    });
+</script>
+</body>
+
+</html>

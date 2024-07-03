@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{admin/_adminlayout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Danh Sách Tập Phim</title>
+    <!-- Include các file CSS và JS cần thiết -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/dataTables.bootstrap4.min.css">
+    <!-- Nếu cần, bạn có thể tải các file JS của DataTables từ CDN -->
+    <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap4.min.js"></script>
+</head>
+<body layout:fragment="content">
+<div class="container-fluid" id="container-wrapper">
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Bảng Tập Phim</h1>
+    </div>
+    <!-- Row -->
+    <div class="row">
+        <div class="col-lg-12">
+            <p>
+                <a th:href="@{/admin/tapphims/create}" class="btn btn-danger mb-1">Thêm Mới</a>
+            </p>
+            <div class="card mb-4">
+                <div class="table-responsive p-3">
+                    <table class="table align-items-center table-flush" id="dataTable">
+                        <thead class="thead-light">
+                        <tr>
+                            <th>Tên Phim</th>
+                            <th>Tập Thứ</th>
+                            <th>Video</th>
+                            <th>Action</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <!-- Thay đổi cú pháp Thymeleaf để lặp qua danh sách các tập phim -->
+                        <tr th:each="tapphim : ${tapphims}">
+                            <td th:text="${tapphim.phim.tenphim}"></td>
+                            <td th:text="${tapphim.tapphimthu}"></td>
+                            <td>
+                                <video width="200px" controls>
+                                    <source th:src="@{'/movies/' + ${tapphim.tapphimupdate}}" type="video/mp4">
+                                </video>
+                            </td>
+                            <td>
+                                <a th:href="@{/admin/tapphims/edit/{id}(id=${tapphim.tapphimId})}" class="btn btn-outline-info mb-1">Sửa</a> |
+                                <a th:href="@{/admin/tapphims/delete/{id}(id=${tapphim.tapphimId})}" class="btn btn-outline-danger mb-1">Xoá</a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Row -->
+</div>
+<!-- Container -->
+<script th:inline="javascript">
+    $(document).ready(function () {
+        $('#dataTable').DataTable();
+    });
+</script>
+</body>
+</html>

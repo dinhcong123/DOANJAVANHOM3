@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{user/_layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Đăng Ký</title>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const form = document.querySelector("form");
+            const password = document.querySelector('input[name="password"]');
+            const confirmPassword = document.querySelector('input[name="confirmPassword"]');
+
+            form.addEventListener("submit", function (event) {
+                if (password.value !== confirmPassword.value) {
+                    event.preventDefault();
+                    alert("Mật khẩu và xác nhận mật khẩu không trùng khớp.");
+                }
+            });
+
+            if (window.history.replaceState) {
+                window.history.replaceState(null, null, window.location.href);
+                window.addEventListener("popstate", function () {
+                    window.location.replace("/"); // Thay đổi đường dẫn thành trang chủ hoặc trang mong muốn
+                });
+            }
+        });
+    </script>
+</head>
+<body layout:fragment="content">
+<section class="normal-breadcrumb set-bg" th:attr="data-setbg=@{/anhbia/wallpaperflare.com_wallpaper.jpg}">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <div class="normal__breadcrumb__text">
+                    <h2>Đăng Ký</h2>
+                    <p>Chào mừng Đến Với Trang Anime</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="signup spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="login__form">
+                    <h3>Sign Up</h3>
+                    <form th:action="@{/register}" th:object="${user}" method="post">
+                        <div class="input__item">
+                            <input type="text" th:field="*{email}" placeholder="Email*">
+                            <span class="icon_mail"></span>
+                        </div>
+                        <div class="input__item">
+                            <input type="text" th:field="*{username}" placeholder="Tài Khoản*">
+                            <span class="icon_profile"></span>
+                        </div>
+                        <div class="input__item">
+                            <input type="password" th:field="*{password}" placeholder="Mật Khẩu*">
+                            <span class="icon_lock"></span>
+                        </div>
+                        <div class="input__item">
+                            <input type="password" th:field="*{confirmPassword}" placeholder="Xác Nhận Mật Khẩu*">
+                            <span class="icon_lock"></span>
+                        </div>
+                        <button type="submit" class="site-btn">Đăng Ký</button>
+                    </form>
+                    <h5>Bạn Đã Có Tài Khoản? <a th:href="@{/login}">Đăng Nhập!</a></h5>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>

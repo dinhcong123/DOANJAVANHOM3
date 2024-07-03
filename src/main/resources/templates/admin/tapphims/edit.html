@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{admin/_adminlayout}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sửa</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+</head>
+<body layout:fragment="content">
+<div class="container">
+    <div class="card mb-4">
+        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+            <h6 class="m-0 font-weight-bold text-primary">Sửa Phim</h6>
+        </div>
+        <div class="card-body">
+                <form th:action="@{/admin/tapphims/edit/{id}(id=${tapphims.tapphimId})}" th:object="${tapphims}" method="post"
+                      enctype="multipart/form-data">
+                <div th:if="${#fields.hasErrors('*')}" class="text-danger">
+                    <p th:each="err : ${#fields.errors('*')}" th:text="${err}"></p>
+                </div>
+                <input type="hidden" th:field="*{tapphimId}" />
+                <input type="hidden" th:field="*{tapphimupdate}" />
+                <div class="form-group col-sm-3">
+                    <label for="tapphimthu" class="form-label">Tập Thứ:</label>
+                    <input type="text" th:field="*{tapphimthu}" class="form-control" id="tapphimthu"
+                           required>
+                    <div class="text-danger" th:if="${#fields.hasErrors('tapphimthu')}"
+                         th:errors="*{tapphimthu}"></div>
+                </div>
+                <div class="form-group col-sm-3">
+                    <label for="tapphimupdate">Video:</label>
+                    <input class="form-control-file" type="file" id="tapphimupdate" name="movietapphim">
+                    <div class="alert alert-warning" th:if="${#fields.hasErrors('tapphimupdate')}" th:errors="*{tapphimupdate}"></div>
+                </div>
+                <div class="form-label col-sm-3">
+                    <label for="phim">Phim:</label>
+                    <select th:field="*{phim}" class="form-control" id="phim">
+                        <option th:each="phim : ${phims}"
+                                th:value="${phim.phimId}" th:text="${phim.tenphim}"></option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary">Lưu</button>
+            </form>
+            <a th:href="@{/admin/tapphims}">Quay lại</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

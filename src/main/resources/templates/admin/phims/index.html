@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{admin/_adminlayout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Bảng Phim</title>
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+        $(document).ready(function() {
+            var errorMessage = /*[[${errorMessage}]]*/ null;
+            if (errorMessage) {
+                $('#errorModal').modal('show');
+            }
+        });
+        /*]]>*/
+    </script>
+
+    <!-- Modal -->
+    <div class="modal fade" id="errorModal" tabindex="-1" role="dialog" aria-labelledby="errorModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="errorModalLabel">Error</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p th:text="${errorMessage}"></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Đóng</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</head>
+<body layout:fragment="content">
+<div class="container-fluid" id="container-wrapper">
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Bảng Phim</h1>
+    </div>
+    <!-- Row -->
+    <div class="row">
+        <div class="col-lg-12">
+            <p>
+                <a class="btn btn-danger mb-1" th:href="@{/admin/phims/create}">Thêm Mới</a>
+            </p>
+            <div class="card mb-4">
+                <div class="table-responsive p-3">
+                    <table class="table align-items-center table-flush" id="dataTable">
+                        <thead class="thead-light">
+                        <tr>
+                            <th>Tên Phim</th>
+                            <th>Mô Tả</th>
+                            <th>Hình Ảnh</th>
+                            <th>Năm Phát Hành</th>
+                            <th>Số Tập Phim Hiện Tại</th>
+                            <th>Số Tập Phim</th>
+                            <th>Thể Loại</th>
+                            <th>Quốc Gia</th>
+                            <th>Action</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <!-- Sử dụng Thymeleaf để lặp qua danh sách các phim -->
+                        <tr th:each="phim : ${phims}">
+                            <td th:text="${phim.tenphim}"></td>
+                            <td th:text="${phim.description}"></td>
+                            <td>
+                                <img width="50" th:src="@{/images/} + ${phim.imageurl}" alt="Phim Image">
+                            </td>
+                            <td th:text="${phim.year}"></td>
+                            <td th:text="${phim.sotapphimhientai}"></td>
+                            <td th:text="${phim.sotapphim}"></td>
+                            <td th:text="${phim.theloai.tentheloai}"></td>
+                            <td th:text="${phim.quocgia.tenquocgia}"></td>
+                            <td>
+                                <a class="btn btn-outline-info mb-1" th:href="@{/admin/phims/edit/{id}(id=${phim.phimId})}">Sửa</a>
+                                <a class="btn btn-outline-danger mb-1" th:href="@{/admin/phims/delete/{id}(id=${phim.phimId})}">Xoá</a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Row-->
+</div>
+<a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+</a>
+<script>
+    $(document).ready(function () {
+        $('#dataTable').DataTable();
+    });
+</script>
+</body>
+</html>

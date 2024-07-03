@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{admin/_adminlayout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Chỉnh Sửa Quốc Gia</title>
+</head>
+<body layout:fragment="content">
+<div class="card mb-4">
+    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+        <h6 class="m-0 font-weight-bold text-primary">Chỉnh Sửa Quốc Gia</h6>
+    </div>
+    <div class="form-row">
+        <div class="card-body">
+            <form th:action="@{/admin/quocgias/edit/{id}(id=${quocgias.quocgiaId})}" th:object="${quocgias}" method="post">
+                <div th:if="${#fields.hasErrors('*')}" class="text-danger">
+                    <p th:each="err : ${#fields.errors('*')}" th:text="${err}"></p>
+                </div>
+                <input type="hidden" th:field="*{quocgiaId}" />
+                <div class="form-group col-sm-3">
+                    <label th:for="*{tenquocgia}" class="control-label">Tên Quốc Gia</label>
+                    <input th:field="*{tenquocgia}" class="form-control" />
+                    <span th:if="${#fields.hasErrors('tenquocgia')}" th:errors="*{tenquocgia}" class="text-danger"></span>
+                </div>
+
+                <div class="form-group col-sm-3">
+                    <label th:for="*{description}" class="control-label">Mô tả</label>
+                    <input th:field="*{description}" class="form-control" />
+                    <span th:if="${#fields.hasErrors('description')}" th:errors="*{description}" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">Lưu</button>
+                </div>
+            </form>
+            <a th:href="@{/admin/quocgias}">Quay lại</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>
